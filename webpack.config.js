@@ -16,6 +16,10 @@ module.exports = {
             filename: 'estilo.css'
         })
     ],
+    devServer: {
+        contentBase: './public',
+        port: 9000
+    },
     optimization: {
         minimizer: [
             new UglifyJsPlugin({
