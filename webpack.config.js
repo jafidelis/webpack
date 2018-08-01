@@ -30,18 +30,30 @@ module.exports = {
         ]
     },
     module: {
-        rules: [{
-            test: /\.s?[ac]ss$/,
-            use: [
-                { loader: MiniCssExtractPlugin.loader },
+        rules: [
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.s?[ac]ss$/,
+                use: [
+                    { loader: MiniCssExtractPlugin.loader },
 
-                // 'style-loader', // Adiciona CSS a DOM injetando a tag <style>
-                'css-loader', // interpreta @import, url()...
-                'sass-loader'
-            ]
-        }, {
-            test: /\.(png|jpg|svg|gif)$/,
-            use: ['file-loader']
-        }]
+                    // 'style-loader', // Adiciona CSS a DOM injetando a tag <style>
+                    'css-loader', // interpreta @import, url()...
+                    'sass-loader'
+                ]
+            }, {
+                test: /\.(png|jpg|svg|gif)$/,
+                use: ['file-loader']
+            }
+        ]
     }
 }
